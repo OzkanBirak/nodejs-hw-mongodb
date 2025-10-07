@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+// src/db/initMongoConnection.js
+const mongoose = require('mongoose');
 
-export const initMongoConnection = async () => {
+const initMongoConnection = async () => {
   try {
     const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB } = process.env;
-
     const mongoUri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DB}?retryWrites=true&w=majority`;
 
     await mongoose.connect(mongoUri);
@@ -14,3 +14,5 @@ export const initMongoConnection = async () => {
     process.exit(1);
   }
 };
+
+module.exports = initMongoConnection; // Default export
