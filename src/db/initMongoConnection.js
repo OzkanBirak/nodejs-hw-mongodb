@@ -1,5 +1,5 @@
 // src/db/initMongoConnection.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const initMongoConnection = async () => {
   try {
@@ -7,12 +7,11 @@ const initMongoConnection = async () => {
     const mongoUri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DB}?retryWrites=true&w=majority`;
 
     await mongoose.connect(mongoUri);
-
-    console.log('Mongo connection successfully established!');
+    console.log('✅ Mongo connection successfully established!');
   } catch (error) {
-    console.error('Mongo connection failed:', error.message);
+    console.error('❌ Mongo connection failed:', error.message);
     process.exit(1);
   }
 };
 
-module.exports = initMongoConnection; // Default export
+export default initMongoConnection;
